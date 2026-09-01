@@ -1,0 +1,737 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ivan Doubovik</title>
+
+    <style>
+        /* ===== GENERAL ===== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #0d0b1f;
+            --background-light: #15122d;
+            --card: rgba(255, 255, 255, 0.96);
+            --text: #333;
+            --heading: #17152b;
+            --purple: #9b6cff;
+            --pink: #f36bb8;
+            --cyan: #62dff5;
+            --muted: #777;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+
+            /*
+             * Dark vaporwave background
+             */
+            background:
+                radial-gradient(circle at 20% 10%,
+                    rgba(155, 108, 255, 0.22),
+                    transparent 35%),
+                radial-gradient(circle at 80% 20%,
+                    rgba(243, 107, 184, 0.18),
+                    transparent 30%),
+                linear-gradient(135deg,
+                    #0d0b1f 0%,
+                    #15122d 50%,
+                    #0d0b1f 100%);
+
+            min-height: 100vh;
+        }
+
+        /*
+         * Subtle retro grid in the background.
+         * It is deliberately very faint so that it does not
+         * interfere with reading.
+         */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(rgba(98, 223, 245, 0.035) 1px,
+                    transparent 1px),
+                linear-gradient(90deg,
+                    rgba(98, 223, 245, 0.035) 1px,
+                    transparent 1px);
+
+            background-size: 50px 50px;
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        a {
+            color: #6a3fc1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #d04fa0;
+            text-decoration: none;
+        }
+
+
+        /* ===== HEADER ===== */
+
+        header {
+            background: rgba(13, 11, 31, 0.88);
+            border-bottom: 1px solid rgba(98, 223, 245, 0.25);
+            padding: 20px;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            margin: 0 14px;
+
+            font-size: 15px;
+            color: #e8e3ff;
+
+            transition:
+                color 0.2s ease,
+                text-shadow 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--cyan);
+
+            text-shadow:
+                0 0 8px rgba(98, 223, 245, 0.7);
+        }
+
+
+        /* ===== MAIN ===== */
+
+        main {
+            max-width: 1000px;
+            margin: 55px auto;
+            padding: 0 20px;
+        }
+
+
+        /* ===== INTRODUCTION ===== */
+
+        .intro {
+            display: flex;
+            gap: 45px;
+            align-items: center;
+
+            margin-bottom: 60px;
+
+            color: white;
+        }
+
+        .profile-picture {
+            width: 190px;
+            height: 190px;
+
+            object-fit: cover;
+            border-radius: 50%;
+
+            border: 4px solid rgba(255, 255, 255, 0.9);
+
+            box-shadow:
+                0 0 0 4px rgba(155, 108, 255, 0.35),
+                0 0 25px rgba(155, 108, 255, 0.35),
+                0 0 45px rgba(243, 107, 184, 0.15);
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+
+            font-size: 42px;
+
+            color: white;
+
+            /*
+             * Very subtle vaporwave gradient on the name.
+             */
+            background: linear-gradient(90deg,
+                    #ffffff,
+                    #cbb8ff,
+                    #8eeeff);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .position {
+            font-size: 20px;
+            color: #d8d1ee;
+            margin-top: 0;
+        }
+
+        .intro-text p {
+            color: #d0cbe0;
+        }
+
+        .intro-text a {
+            color: var(--cyan);
+        }
+
+        .intro-text a:hover {
+            color: var(--pink);
+        }
+
+
+        /* ===== SECTIONS ===== */
+
+        section {
+            background: var(--card);
+
+            padding: 30px;
+            margin-bottom: 30px;
+
+            border-radius: 10px;
+
+            /*
+             * Thin purple edge + restrained shadow.
+             */
+            border: 1px solid rgba(155, 108, 255, 0.25);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.25),
+                0 0 25px rgba(155, 108, 255, 0.06);
+        }
+
+        section h2 {
+            margin-top: 0;
+
+            font-size: 26px;
+            color: var(--heading);
+
+            border-bottom: 2px solid transparent;
+
+            /*
+             * Gradient line underneath section headings.
+             */
+            border-image:
+                linear-gradient(90deg,
+                    var(--purple),
+                    var(--pink),
+                    var(--cyan)) 1;
+
+            padding-bottom: 10px;
+        }
+
+
+        /* ===== RESEARCH ===== */
+
+        .research-item {
+            margin-bottom: 25px;
+        }
+
+        .research-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .research-item h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+
+        /* ===== PROJECTS & NOTES ===== */
+
+        .project {
+            margin-bottom: 30px;
+
+            padding-left: 18px;
+
+            border-left: 3px solid var(--purple);
+        }
+
+        .project:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-title {
+            font-weight: bold;
+            font-size: 18px;
+
+            color: #2c2050;
+
+            margin-bottom: 2px;
+        }
+
+        .project-meta {
+            font-style: italic;
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            margin-top: 5px;
+        }
+
+        .project-links {
+            margin-top: 10px;
+        }
+
+        .project-links a {
+            margin-right: 15px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #7046bd;
+        }
+
+        .project-links a:hover {
+            color: #d04fa0;
+        }
+
+
+        /* ===== CV ===== */
+
+        #cv a {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 5px;
+
+            color: white;
+
+            background: linear-gradient(90deg,
+                    #7652c7,
+                    #a052a9);
+
+            box-shadow:
+                0 3px 12px rgba(118, 82, 199, 0.25);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        #cv a:hover {
+            text-decoration: none;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 18px rgba(118, 82, 199, 0.4);
+        }
+
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            text-align: center;
+
+            padding: 35px;
+
+            color: #8d87a5;
+
+            font-size: 14px;
+        }
+
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 700px) {
+
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .intro {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .intro h1 {
+                font-size: 32px;
+            }
+
+            .profile-picture {
+                width: 160px;
+                height: 160px;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+
+
+<body>
+
+
+    <!-- ===== HEADER ===== -->
+
+    <header>
+
+        <div class="header-container">
+
+            <nav>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#research">
+                    Research
+                </a>
+
+                <a href="#projects">
+                    Projects & Notes
+                </a>
+
+                <a href="#cv">
+                    CV
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+
+    <main>
+
+
+        <!-- INTRODUCTION -->
+
+        <div class="intro">
+
+            <img src="photo.jpg" alt="Landscape photo of Kyoto" class="profile-picture">
+
+            <div class="intro-text">
+
+                <h1>
+                    Ivan Doubovik
+                </h1>
+
+                <p class="position">
+                    PhD Student
+                </p>
+
+                <p>
+                    Mathematics<br>
+                    University of Lille<br>
+                    Laboratoire Paul Painlevé<br>
+                    Office: Building M3, Room 12
+                </p>
+
+                <p>
+                    <a href="mailto:ivan.doubovik@univ-lille.fr">
+                        ivan.doubovik@univ-lille.fr
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <h2>
+                About Me
+            </h2>
+
+            <p>
+                I am a PhD candidate in Mathematics at the University of Lille,
+                where I work in analytic number theory, with a particular focus
+                on quantum unique ergodicity for non-holomorphic Hilbert modular Eisenstein series.
+            </p>
+
+            <p>
+                Alongside my PhD research, I have developed an interest in the foundations of mathematics and dependent
+                type theory. I am particularly interested in the relationship between proofs and computation, and have
+                been exploring topics such as normalization and canonicity in type theories.
+            </p>
+
+        </section>
+
+
+        <!-- RESEARCH -->
+
+        <section id="research">
+
+            <h2>
+                Research
+            </h2>
+
+            <div class="research-item">
+
+                <h3>
+                    Analytic Number Theory
+                </h3>
+
+                <p>
+                    My PhD research is in analytic number theory, with a particular focus on quantum unique ergodicity
+                    for non-holomorphic Hilbert modular Eisenstein series on shrinking sets.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS & NOTES -->
+
+        <section id="projects">
+
+            <h2>
+                Projects & Notes
+            </h2>
+
+            <p>
+                This section contains projects, notes, and other work, including both completed and ongoing work.
+            </p>
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="project">
+
+                <div class="project-title">
+                    Reading Group on Automata-Theoretic Approaches in Number Theory
+                </div>
+
+                <div class="project-meta">
+                    Organized in 2025 · French
+                </div>
+
+                <div class="project-description">
+
+                    <p>
+                        I organized a reading group based on the paper <em>"Automata in Number Theory"</em> by Boris
+                        Adamczewski.
+                    </p>
+
+                    <p>
+                        <strong>Participants:</strong>
+                        Angelot Behajaina, Didier Lesesvre, Théo Deturck, Emma Weschler, Maxence Suroy and myself.
+                    </p>
+
+                    <p>
+                        Notes contributed by all members of the reading group.
+                    </p>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a href="projects/automates.pdf" target="_blank">
+                        Read PDF
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="project">
+
+                <div class="project-title">
+                    Masters project on Tate's thesis
+                </div>
+
+                <div class="project-meta">
+                    Completed · French
+                </div>
+
+                <div class="project-description">
+
+                    <p>
+                        A manuscript based on my master's project, which studies Tate's thesis in the case \(k =
+                        \mathbb{Q}\).
+                    </p>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a href="projects/tate_thesis.pdf" target="_blank">
+                        Read PDF
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="project">
+
+                <div class="project-title">
+                    Notes on the Axiom of Choice
+                </div>
+
+                <div class="project-meta">
+                    Completed · English
+                </div>
+
+                <div class="project-description">
+
+                    <p>
+                        Some notes on the axiom of choice written as part of an English for Mathematics course in the
+                        Mathematics Master's programme. These notes were written jointly with my classmate and good
+                        friend, Lea Lopez.
+                    </p>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a href="projects/axiom_of_choice.pdf" target="_blank">
+                        Read PDF
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="project">
+
+                <div class="project-title">
+                    Personal Game Engine
+                </div>
+
+                <div class="project-meta">
+                    Personal project · C++ and OpenGL
+                </div>
+
+                <div class="project-description">
+
+                    <p>
+                        This project began from my interest in video game development during high school and eventually
+                        grew into an attempt to build my own game engine. Although primarily a personal and educational
+                        project, it introduced me to many ideas in programming and computation and contributed to my
+                        later interest in mathematics and logic. The engine includes an implementation of the GJK
+                        (Gilbert–Johnson–Keerthi) collision detection algorithm. The project contains many naive design
+                        choices, bad practices, and other flaws that I am aware of in retrospect. Nevertheless, I have
+                        kept it as a record of my learning process, as the main purpose of the project was to explore
+                        programming and to understand how a game engine could be built from scratch.
+                    </p>
+
+                    <p>
+                        Working on the engine introduced me to many ideas in computer
+                        science and mathematics and played an important role in my
+                        subsequent interest in mathematics and logic.
+                    </p>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a href="https://github.com/Ivan-M4th/OpenGL" target="_blank">
+                        GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CV -->
+
+        <section id="cv">
+
+            <h2>
+                Curriculum Vitae
+            </h2>
+
+            <p>
+                <a href="CV.pdf" target="_blank">
+                    Download my CV (PDF)
+                </a>
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+
+    <footer>
+
+        © 2026 Ivan Doubovik
+
+    </footer>
+
+
+</body>
+
+</html>
+```
